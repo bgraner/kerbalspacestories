@@ -21,6 +21,14 @@ application.controller('MainCtrl', function ($scope) {
     $scope.logout = function() {
       angularFireAuth.logout();
     }
+
+    $scope.signup = function(){
+		angularFireAuth.createUser($scope.signupEmail, $scope.signupPassword, function(error, user) {
+			if (!error) {
+				console.log('User Id: ' + user.id + ', Email: ' + user.email);
+			}
+		});
+    }
     $scope.addComment = function(e) {
       if (e.keyCode != 13) {
         return;
