@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('KerbalSpaceStoriesApp', [])
+angular.module('KerbalSpaceStoriesApp', ['firebase'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

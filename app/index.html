@@ -26,8 +26,128 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
+    <!-- Login Controller, if logged in show the logout button, else show login button -->
+    <div ng-controller="LoginController">
+        <div id="loginDiv">
+        <span ng-show="user">
+            {{user.name}} | <a href="#" ng-click="logout()">Logout</a>
+        </span>
+
+        <div class="container" ng-hide="user">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="span6">
+                        <div class="area">
+                            <form class="form-horizontal">
+                                <div class="heading">
+                                    <h4 class="form-heading">Sign In</h4>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputCompanyName">Company Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="inputCompanyName" placeholder="E.g. Some Software Pvt. Ltd.">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputUsername">Username</label>
+                                    <div class="controls">
+                                        <input type="text" id="inputUsername" placeholder="E.g. ashwinhegde">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputPassword">Password</label>
+                                    <div class="controls">
+                                        <input type="password" id="inputPassword" placeholder="Min. 8 Characters">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <label class="checkbox">
+                                            <input type="checkbox"> Keep me signed in   ¦
+                                            <a href="#" class="btn btn-link">Forgot my password</a>
+                                        </label>
+                                        <button type="submit" class="btn btn-success" ng-click="login()">Sign In</button>
+                                        <button type="button" class="btn">Help</button>
+                                    </div>
+                                </div>  
+                                <div class="alert alert-error">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>Access Denied!</strong> Please provide valid authorization.
+                                </div>
+                            </form> 
+                        </div>                           
+                    </div>
+                    <div class="span6">
+                        <div class="area">
+                            <form class="form-horizontal">
+                                <div class="heading">
+                                    <h4 class="form-heading">Sign Up</h4>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputCompanyName">Company Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="inputCompanyName" placeholder="E.g. Some Software Pvt. Ltd.">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputFirst">First Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="inputFirst" placeholder="E.g. Ashwin">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputLast">Last Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="inputLast" placeholder="E.g. Hegde">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputEmail">Email</label>
+                                    <div class="controls">
+                                        <input type="text" id="inputEmail" placeholder="E.g. ashwinh@cybage.com">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputUser">Username</label>
+                                    <div class="controls">
+                                        <input type="text" id="inputUser" placeholder="E.g. ashwinhegde">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="inputPassword">Password</label>
+                                    <div class="controls">
+                                        <input type="password" id="inputPassword" placeholder="Min. 8 Characters">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <label class="checkbox">
+                                            <input type="checkbox"> I agree all your <a href="#">Terms of Services</a>
+                                        </label>
+                                        <button type="submit" class="btn btn-success" ng-click="login()">Sign Up</button>
+                                        <button type="button" class="btn">Help</button>
+                                    </div>
+                                </div>  
+                                <div class="alert alert-info">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>Confirmation: </strong> A confirmation email has been sent to your email.<br>
+                                    Thank you for your registration.
+                                </div>
+                            </form> 
+                        </div>                            
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
     <!-- Add your site or application content here -->
     <div class="container" ng-view="">
+    </div>
+
+    <!-- Our actual logic to render/run the site -->
+    <div ng-controler="TheRest">
     </div>
 
     <a href="javascript:login('facebook');">Login with Facebook</a> <br />
@@ -66,17 +186,18 @@
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
         <!-- endbuild -->
 
+        <!-- Firebase -->
+        <!-- Firebase Simple Auth -->
+        <script type="text/javascript" src="https://cdn.firebase.com/v0/firebase.js"></script>
+        <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase-simple-login.js'></script>
+        <script type='text/javascript' src='bower_components/angular-fire/angularFire.js'></script>
+
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <!-- endbuild -->
 
-        <!-- Firebase -->
-        <!-- Firebase Simple Auth -->
-        <script type="text/javascript" src="https://cdn.firebase.com/v0/firebase.js"></script>
-        <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase-simple-login.js'></script>
-
-        <!-- Boilderplate from https://www.firebase.com/docs/security/simple-login-overview.html -->
+        <!-- Boilderplate from https://www.firebase.com/docs/security/simple-login-overview.html
         <script>
             var chatRef = new Firebase('https://kerbalspacestories.firebaseio.com/');
             var auth = new FirebaseSimpleLogin(chatRef, function(error, user) {
@@ -96,5 +217,6 @@
                 auth.login(provider);
             }
         </script>
+        -->
 </body>
 </html>
