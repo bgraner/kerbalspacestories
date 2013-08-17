@@ -6,6 +6,15 @@ angular.module('KerbalSpaceStoriesApp', ['firebase'])
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+      }).when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginController'
+      }).when('/signup', {
+        templateUrl: 'views/signup.html',
+        controller: 'LoginController'
+      }).when('/story/:storyId', {
+        templateUrl: 'views/story.html',
+        controller: 'StoryCtrl'
       })
       .otherwise({
         redirectTo: '/'

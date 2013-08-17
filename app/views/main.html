@@ -1,9 +1,21 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
+
+<div ng-controller="LoginController">
+	<span ng-show="user">
+	    {{user.email}} | <a href="#" ng-click="logout()">Logout</a>
+	</span>
+
+	<span ng-hide="user">
+		<a href="#/login">Login</a> | <a href="#/signup">Signup</a> <br/>
+	</span>
+</div>
+
+<div class="grid12">
+  <h1>Stories</h1>
   <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
+      <li ng-repeat="story in stories"><a href="#/story/{{ story.$id }}"> {{ story.storyDetails }} </a></li>
   </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+  <div ng-show="user">
+	  <input ng-model="storyDetails">
+	  <button ng-click="addStory()">Add story</button>
+  </div>
 </div>

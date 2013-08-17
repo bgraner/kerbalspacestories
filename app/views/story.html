@@ -1,0 +1,24 @@
+<div ng-controller="LoginController">
+	<span ng-show="user">
+	    {{user.email}} | <a href="#" ng-click="logout()">Logout</a>
+	</span>
+
+	<span ng-hide="user">
+		<a href="#/login">Login</a> | <a href="#/signup">Signup</a> <br/>
+	</span>
+</div>
+
+<div class="hero-unit">
+  <h1>Stories</h1>
+  <h2>You clicked on story {{ storyId }} </h2>
+  {{ storyDetails }}
+
+  <input ng-model="stepName">
+  <button ng-click="addStep()">Add Step</button>
+  <!-- As per http://stackoverflow.com/questions/16631702/file-pick-with-angular-js angular doesn't handle onchange events just yet so we need to roll something of a hack -->
+  <input ng-model="photo" onchange="angular.element(this).scope().file_changed(this)" type="file" accept="image/*" />
+
+  <button ng-click="addImage()">Add Image</button>
+  <br/>
+  <img ng-src="{{imgSrc}}"/>
+</div>
