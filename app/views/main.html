@@ -12,7 +12,7 @@
 <div class="grid12">
   <h1>Stories</h1>
   <ul>
-      <li ng-repeat="story in stories"><a href="#/story/{{ story.$id }}"> {{ story.storyDetails }} </a></li>
+      <li ng-repeat="story in stories"><a href="#/story/{{ story.$id }}"> {{ story.storyDetails }} </a> <button ng-click="removeStory(story)">Remove</button></li>
   </ul>
   <div ng-show="user">
 	  <input ng-model="storyDetails">
